@@ -28,10 +28,15 @@ describe("Check payload of posting to whatsapp", () => {
       message_body
     );
     expect(res).to.have.property("method");
+    assert(typeof res.method === "string");
     expect(res).to.have.property("url");
+    assert(typeof res.url === "string");
     expect(res).to.have.nested.property("headers.Authorization");
+    assert(typeof res.headers.Authorization === "string");
     expect(res).to.have.nested.property("headers.Content-Type");
+    assert(typeof res.headers["Content-Type"] === "string");
     expect(res).to.have.property("data");
+    assert(typeof res.data === "string");
     done();
   });
 });
