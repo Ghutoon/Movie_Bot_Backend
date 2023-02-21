@@ -46,14 +46,10 @@ const group_documents_by_intent = async (request, response) => {
         },
       },
     ]);
+    response.status(200).json(query);
   } catch (err) {
     logger.error("Could not fetch data");
-  }
-
-  try {
-    response.status(200).json(query);
-  } catch (error) {
-    response.status(500).send(error);
+    response.status(500).send(error.message);
   }
 };
 
@@ -73,7 +69,7 @@ const group_queries_by_date_week = async (request, response) => {
     start_date = firstday.substring(0, 10);
     end_date = lastday.substring(0, 10);
   } catch (err) {
-    response.send(err.message);
+    response.status(400).send(err.message);
     logger.error("Date format error");
     return;
   }
