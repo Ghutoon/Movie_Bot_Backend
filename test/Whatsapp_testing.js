@@ -40,3 +40,15 @@ describe("Check payload of posting to whatsapp", () => {
     done();
   });
 });
+
+
+let payload = new whatsapp.WhatsappUtils().generate_payload("917044174529", "hello");
+
+
+describe("Check if sending the payload to whatsapp server was succesful or not", () => {
+  it("gives true if succesful and vice verca", (done) => {
+    let res = new whatsapp.WhatsappUtils().send_message_to_whatsapp(payload);
+    assert(res == false)
+    done();
+  })
+})
